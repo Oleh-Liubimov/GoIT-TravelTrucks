@@ -1,18 +1,24 @@
 import Filters from "@/components/Filters";
 import TruckCardList from "@/components/TruckCardList";
-import { useAppDispatch } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { fetchAllTrucks } from "@/redux/trucks/operations";
-import { useEffect } from "react";
+import { selectTrucksError } from "@/redux/trucks/selectors";
+import { Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function CampersPage() {
+  const { page, setPage } = useState("");
   const dispatch = useAppDispatch();
+  const error = useAppSelector(selectTrucksError);
+
+  const handleAddMore = () => {};
 
   useEffect(() => {
-    dispatch(fetchAllTrucks());
+    dispatch(fetchAllTrucks({ limit: 5, page: 1 }));
   }, [dispatch]);
 
   return (
-    <main className="px-12 py-12 flex justify-between gap-8">
+    <main className="px-12 pb-8 pt-24 flex justify-between gap-8">
       <Filters />
       <TruckCardList />
     </main>

@@ -10,12 +10,14 @@ import {
 
 export interface TrucksState {
   items: Camper[];
+  item: Camper | null;
   loading: boolean;
   error: unknown;
 }
 
 const initState: TrucksState = {
   items: [],
+  item: null,
   loading: false,
   error: null,
 };
@@ -68,7 +70,7 @@ const trucksSlice = createSlice({
         (state: TrucksState, action: PayloadAction<GetAllTrucksResponse>) => {
           state.loading = false;
           state.error = null;
-          state.items = action.payload.items;
+          state.items = [...state.items, ...action.payload.items];
         }
       )
       .addCase(fetchAllTrucks.rejected, handleReject)
@@ -78,9 +80,7 @@ const trucksSlice = createSlice({
         (state: TrucksState, action: PayloadAction<Camper>) => {
           state.loading = false;
           state.error = null;
-          state.items = state.items.map((truck) =>
-            truck.id === action.payload.id ? action.payload : truck
-          );
+          state.item = action.payload;
         }
       )
       .addCase(fetchTruckBuId.rejected, handleReject);

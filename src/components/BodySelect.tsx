@@ -18,7 +18,7 @@ export default function BodySelect({ onBodySelect }: BodySelectProps) {
   //   onBodySelect(selectedBody);
   // };
 
-  const handleBodySelect = (values: string[]) => {
+  const handleBodySelect = (values: string) => {
     setSelectedBody((prevSelectedTypes) => {
       return [...prevSelectedTypes, ...values];
     });
@@ -31,9 +31,9 @@ export default function BodySelect({ onBodySelect }: BodySelectProps) {
       <Separator className="mb-4" />
       <ToggleGroup
         onValueChange={handleBodySelect}
-        type="multiple"
+        type="single"
         variant="outline"
-        className="flex gap-3 flex-wrap justify-evenly"
+        className="flex gap-2 flex-wrap justify-evenly"
       >
         <ToggleGroupItem
           className="w-[112px] h-[96px]"

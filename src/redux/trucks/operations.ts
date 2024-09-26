@@ -3,20 +3,20 @@ import axios, { AxiosError } from "axios";
 import { GetAllTrucksResponse } from "../../types";
 axios.defaults.baseURL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io";
 
-export const fetchAllTrucks = createAsyncThunk<GetAllTrucksResponse, void>(
-  "trucks/fetch",
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get("/campers");
-      return response.data;
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        return thunkAPI.rejectWithValue(error.message);
-      }
-      return thunkAPI.rejectWithValue("An unknown error occurred");
+export const fetchAllTrucks = createAsyncThunk<
+  GetAllTrucksResponse,
+  { page: number; limit?: number }
+>("trucks/fetch", async ({ page, limit }, thunkAPI) => {
+  try {
+    const response = await axios.get(`/campers?page=${page}&limit=${limit}`);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      return thunkAPI.rejectWithValue(error.message);
     }
+    return thunkAPI.rejectWithValue("An unknown error occurred");
   }
-);
+});
 
 export const fetchTruckBuId = createAsyncThunk(
   "trucks/fetchById",

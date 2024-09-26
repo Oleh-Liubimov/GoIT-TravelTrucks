@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="flex items-center bg-slate-100 w-full py-6 roundedz">
+    <header className="flex items-center bg-slate-100 max-w-[1440px] w-full py-6 fixed top-0 z-50 rounded-b-lg">
       <div className="flex w-2/5">
         <Link to="/" className="text-xl font-bold px-16">
           Travel<span className="text-gray-500">Trucks</span>

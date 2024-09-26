@@ -33,7 +33,7 @@ export default function FeaturesList({ truck }: FeaturesListProps) {
   };
 
   return (
-    <div className="flex gap-2 flex-wrap mt-6 gap-y-2 mb-6">
+    <div className="flex gap-2 flex-wrap my-6 gap-y-2 ">
       {Object.entries(featuresData).map(([key, value]) => {
         if (value) {
           return (

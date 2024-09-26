@@ -38,7 +38,7 @@ export default function TruckCard({ truck }: TruckCardProps) {
       </div>
       <div className=" flex flex-col w-2/3 justify-center">
         <div className="flex justify-between">
-          <h2 className="font-bold text-2xl">{truck.name}</h2>
+          <h2 className="font-bold text-2xl truncate">{truck.name}</h2>
           <div className=" flex justify-center items-center gap-3">
             <span className="font-bold">${truck.price}</span>
             <button type="button">
@@ -59,7 +59,7 @@ export default function TruckCard({ truck }: TruckCardProps) {
           </span>
         </div>
 
-        <span className="text-left text-gray-800 text-base">
+        <span className="text-left text-gray-800 text-base truncate">
           {truck.description}
         </span>
         <FeaturesList truck={truck} />
