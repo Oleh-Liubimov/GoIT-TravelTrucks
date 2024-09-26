@@ -41,3 +41,17 @@ export type GetAllTrucksResponse = {
   total: number;
   items: Camper[];
 };
+
+export type FeaturesData = {
+  AC: boolean;
+  bathroom: boolean;
+  kitchen: boolean;
+  TV: boolean;
+  transmission: string;
+  engine: string;
+  radio: boolean;
+};
+
+export type FeatureImages = {
+  [key: string]: string;
+};

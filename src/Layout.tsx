@@ -7,7 +7,7 @@ export interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="max-w-[1440px] max-h-screen">
+    <div className="max-w-[1440px]  mx-auto">
       <Header />
       <Suspense fallback={null}>{children}</Suspense>
     </div>
