@@ -24,6 +24,13 @@ export default function Filters() {
     setEquipment(newEquipment);
   };
 
+  // const formatFilters = (location: string, body: string, equipment: string[]) => {
+  //   const formattedLocation = location ? `location=${location}` : '';
+  //   const formattedBody = body ? `form=${body}` : '';
+  //   const formattedEquipment = equipment.map(item => ``)
+
+  // }
+
   return (
     <aside className="w-1/4 sticky top-12 h-screen overflow-y-auto">
       <LocationSelect onLocationChange={handleLocationChange} />

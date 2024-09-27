@@ -4,10 +4,6 @@ import FeaturesList from "./FeaturesList";
 import { Button } from "./ui/button";
 import star from "../assets/icons/heart.svg";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "@/hooks";
-import { addFavorite } from "@/redux/favorites/slice";
-import { selectFavorite } from "@/redux/favorites/selectors";
-import { useState } from "react";
 
 export interface TruckCardProps {
   truck: Camper;

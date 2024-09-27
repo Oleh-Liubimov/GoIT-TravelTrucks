@@ -1,7 +1,3 @@
-import React from "react";
-
-export interface ReviewsProps {}
-
-export default function Reviews({}: ReviewsProps) {
-  return <div>Reviews</div>;
+export default function Reviews() {
+  return <div></div>;
 }

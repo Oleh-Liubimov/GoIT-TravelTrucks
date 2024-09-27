@@ -1,17 +1,12 @@
 import Filters from "@/components/Filters";
 import TruckCardList from "@/components/TruckCardList";
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppDispatch } from "@/hooks";
 import { fetchAllTrucks } from "@/redux/trucks/operations";
-import { selectTrucksError } from "@/redux/trucks/selectors";
-import { Loader2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function CampersPage() {
-  const [page, setPage] = useState(1);
+  const page = 1;
   const dispatch = useAppDispatch();
-  const error = useAppSelector(selectTrucksError);
-
-  const handleAddMore = () => {};
 
   useEffect(() => {
     dispatch(fetchAllTrucks({ limit: 5, page }));

@@ -12,6 +12,7 @@ export interface BodySelectProps {
 
 export default function BodySelect({ onBodySelect }: BodySelectProps) {
   const [selectedBody, setSelectedBody] = useState<string>("");
+  console.log(selectedBody);
 
   const handleBodySelect = (value: string) => {
     setSelectedBody(value);

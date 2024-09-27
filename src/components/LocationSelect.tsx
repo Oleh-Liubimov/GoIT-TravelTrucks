@@ -17,6 +17,7 @@ export default function LocationSelect({
   onLocationChange,
 }: LocationSelectProps) {
   const [location, setLocation] = useState("");
+  console.log(location);
 
   const handleSelectChange = (value: string) => {
     setLocation(value);
