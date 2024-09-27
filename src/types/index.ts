@@ -55,3 +55,10 @@ export type FeaturesData = {
 export type FeatureImages = {
   [key: string]: string;
 };
+
+export type FormValues = {
+  name: string;
+  email: string;
+  bookingDate: string;
+  comment: string;
+};

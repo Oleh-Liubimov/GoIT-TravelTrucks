@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import EquipmentCard from "./FeatureCard";
 import { Separator } from "./ui/separator";
@@ -7,22 +7,15 @@ import fullIntegrated from "../assets/icons/bi_droplet.svg";
 import alcove from "../assets/icons/bi_grid-3x3-gap.svg";
 
 export interface BodySelectProps {
-  onBodySelect: (value: string[]) => void;
+  onBodySelect: (value: string) => void;
 }
 
 export default function BodySelect({ onBodySelect }: BodySelectProps) {
-  const [selectedBody, setSelectedBody] = useState<string[]>([]);
+  const [selectedBody, setSelectedBody] = useState<string>("");
 
-  // const handleBodySelect = (value: string[]) => {
-  //   setSelectedBody(value);
-  //   onBodySelect(selectedBody);
-  // };
-
-  const handleBodySelect = (values: string) => {
-    setSelectedBody((prevSelectedTypes) => {
-      return [...prevSelectedTypes, ...values];
-    });
-    onBodySelect(selectedBody);
+  const handleBodySelect = (value: string) => {
+    setSelectedBody(value);
+    onBodySelect(value);
   };
 
   return (

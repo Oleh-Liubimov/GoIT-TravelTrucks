@@ -25,7 +25,7 @@ export default function TruckCardList() {
           <Loader2 className="w-10 h-10 animate-spin" />
         </div>
       ) : (
-        trucks.map((truck) => <TruckCard truck={truck} key={truck.name} />)
+        trucks.map((truck) => <TruckCard truck={truck} key={truck.id} />)
       )}
       {!loading && trucks.length > 0 && (
         <div className="flex justify-center" onClick={handleClick}>

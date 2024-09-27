@@ -20,7 +20,7 @@ export default function LocationSelect({
 
   const handleSelectChange = (value: string) => {
     setLocation(value);
-    onLocationChange(location);
+    onLocationChange(value);
   };
   return (
     <div className="mb-10">

@@ -17,25 +17,19 @@ export default function EquipmentSelect({
 }: EquipmentSelectProps) {
   const [selectedEquipment, setSelectedEquipment] = useState<string[]>([]);
 
-  // const handleToggleChange = (value: string[]) => {
-  //   setSelectedEquipment((prevValues) => {
-  //     if (prevValues.includes(value)) {
-  //       const updatedValues = prevValues.filter((item) => item !== value);
-  //       return updatedValues;
-  //     } else {
-  //       const updatedValues = [...prevValues, value];
+  const handleToggleChange = (values: string[]) => {
+    setSelectedEquipment(values);
 
-  //       return updatedValues;
-  //     }
-  //   });
-  //   onEquipmentChange(selectedEquipment);
-  // };
+    onEquipmentChange(values);
+  };
 
   return (
     <div className="mb-10">
       <span className="font-semibold inline-block mb-4">Vehicle equipment</span>
       <Separator className="mb-4" />
       <ToggleGroup
+        value={selectedEquipment}
+        onValueChange={handleToggleChange}
         type="multiple"
         variant="outline"
         className="flex gap-3 flex-wrap justify-evenly"

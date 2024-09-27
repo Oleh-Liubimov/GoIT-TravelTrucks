@@ -5,7 +5,7 @@ import BodySelect from "./BodySelect";
 
 export default function Filters() {
   const [location, setLocation] = useState("");
-  const [body, setBody] = useState<string[]>([]);
+  const [body, setBody] = useState<string>("");
   const [equipment, setEquipment] = useState<string[]>([]);
 
   console.log(location);
@@ -16,7 +16,7 @@ export default function Filters() {
     setLocation(value);
   };
 
-  const handleBodyChange = (value: string[]) => {
+  const handleBodyChange = (value: string) => {
     setBody(value);
   };
 

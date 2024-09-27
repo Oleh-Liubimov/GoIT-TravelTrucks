@@ -15,8 +15,8 @@ export interface TruckCardProps {
 
 export default function TruckCard({ truck }: TruckCardProps) {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const favorite = useAppSelector(selectFavorite);
+  // const dispatch = useAppDispatch();
+  // const favorite = useAppSelector(selectFavorite);
   // const [favorite, setFavorite] = useState(false);
 
   const handleClick = (id: string) => {
