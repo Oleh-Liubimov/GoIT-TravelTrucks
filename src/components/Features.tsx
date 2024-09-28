@@ -8,9 +8,9 @@ export interface FeaturesProps {
 
 export default function Features({ truck }: FeaturesProps) {
   return (
-    <div className=" flex flex-col p-10 max-w-screen-xl w-1/2 bg-slate-100 rounded-lg">
+    <div className=" flex flex-col p-10 max-w-screen-xl w-1/2 bg-slate-100 rounded-lg ">
       <FeaturesList truck={truck} />
-      <div>
+      <div className=" flex flex-col gap-5">
         <h3>Vehicle details</h3>
         <Separator className="my-5" />
         <div className="flex justify-between">

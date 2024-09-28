@@ -1,43 +1,25 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Camper } from "../../types";
 
 interface FiltersState {
-  location: string;
-  bodyType: string | null;
-  amenities: (keyof Camper)[];
+ filters:string
 }
 
 const initialState: FiltersState = {
-  location: "",
-  bodyType: null,
-  amenities: [],
+  filters:""
 };
 
 const filtersSlice = createSlice({
   name: "filters",
   initialState,
   reducers: {
-    setLocation: (state, action: PayloadAction<string>) => {
-      state.location = action.payload;
-    },
-    setBodyType: (state, action: PayloadAction<string | null>) => {
-      state.bodyType = action.payload;
-    },
-    toggleAmenity: (state, action: PayloadAction<keyof Camper>) => {
-      const index = state.amenities.indexOf(action.payload);
-      if (index === -1) {
-        state.amenities.push(action.payload);
-      } else {
-        state.amenities.splice(index, 1);
-      }
+    setFilters: (state, action: PayloadAction<string>) => {
+      state.filters = action.payload;
     },
     resetFilters: (state) => {
-      state.location = "";
-      state.bodyType = null;
-      state.amenities = [];
+      state.filters = ''
     },
   },
 });
 
-export const { setLocation, setBodyType, toggleAmenity } = filtersSlice.actions;
+export const { setFilters } = filtersSlice.actions;
 export const filtersReducer = filtersSlice.reducer;

@@ -1,12 +1,7 @@
-import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Camper, GetAllTrucksResponse } from "../../types";
-import { fetchAllTrucks, fetchTruckBuId } from "./operations";
-import { selectTrucks } from "./selectors";
-import {
-  selectFilterAmenities,
-  selectFilterBodyType,
-  selectFilterLocation,
-} from "../filters/selectors";
+import { fetchTrucks, fetchTruckBuId } from "./operations";
+
 
 export interface TrucksState {
   items: Camper[];
@@ -31,32 +26,27 @@ const handleReject = (state: TrucksState, action: PayloadAction<unknown>) => {
   state.error = action.payload;
 };
 
-export const selectFilteredTrucks = createSelector(
-  [
-    selectTrucks,
-    selectFilterLocation,
-    selectFilterBodyType,
-    selectFilterAmenities,
-  ],
-  (
-    trucks: Camper[],
-    location: string,
-    bodyType: string | null,
-    amenities: (keyof Camper)[]
-  ) => {
-    return trucks.filter((truck) => {
-      const matchesLocation = location
-        ? truck.location.toLowerCase().includes(location.toLowerCase())
-        : true;
-      const matchesBodyType = bodyType !== "" ? truck.form === bodyType : true;
-      const matchesAmenities =
-        amenities.length > 0
-          ? amenities.every((amenity) => truck[amenity])
-          : true;
-      return matchesLocation && matchesBodyType && matchesAmenities;
-    });
-  }
-);
+// export const selectFilteredTrucks = createSelector(
+//   [
+//     selectTrucks,
+//    selectFilters
+//   ],
+//   (
+//    filters:string
+//   ) => {
+//     return trucks.filter((truck) => {
+//       const matchesLocation = location
+//         ? truck.location.toLowerCase().includes(location.toLowerCase())
+//         : true;
+//       const matchesBodyType = bodyType !== "" ? truck.form === bodyType : true;
+//       const matchesAmenities =
+//         amenities.length > 0
+//           ? amenities.every((amenity) => truck[amenity])
+//           : true;
+//       return matchesLocation && matchesBodyType && matchesAmenities;
+//     });
+//   }
+// );
 
 const trucksSlice = createSlice({
   name: "trucks",
@@ -64,16 +54,16 @@ const trucksSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchAllTrucks.pending, handleLoading)
+      .addCase(fetchTrucks.pending, handleLoading)
       .addCase(
-        fetchAllTrucks.fulfilled,
+        fetchTrucks.fulfilled,
         (state: TrucksState, action: PayloadAction<GetAllTrucksResponse>) => {
           state.loading = false;
           state.error = null;
           state.items = [...state.items, ...action.payload.items];
         }
       )
-      .addCase(fetchAllTrucks.rejected, handleReject)
+      .addCase(fetchTrucks.rejected, handleReject)
       .addCase(fetchTruckBuId.pending, handleLoading)
       .addCase(
         fetchTruckBuId.fulfilled,

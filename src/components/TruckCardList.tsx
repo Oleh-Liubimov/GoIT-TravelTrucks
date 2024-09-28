@@ -1,21 +1,21 @@
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppSelector } from "@/hooks";
 import { selectTrucks, selectTrucksLoading } from "@/redux/trucks/selectors";
 import TruckCard from "./TruckCard";
 import { Loader2 } from "lucide-react";
 import { Button } from "./ui/button";
-import { useState } from "react";
-import { fetchAllTrucks } from "@/redux/trucks/operations";
 
-export default function TruckCardList() {
+
+export interface TruckCardListProps{
+  page:number;
+  setPage:(page:number) => void;
+}
+
+export default function TruckCardList({page,setPage}:TruckCardListProps ) {
   const trucks = useAppSelector(selectTrucks);
   const loading = useAppSelector(selectTrucksLoading);
-  const [page, setPage] = useState(1);
-  const dispatch = useAppDispatch();
-  const limit = 5;
 
   const handleClick = () => {
     setPage(page + 1);
-    dispatch(fetchAllTrucks({ page, limit }));
   };
 
   return (
@@ -25,7 +25,7 @@ export default function TruckCardList() {
           <Loader2 className="w-10 h-10 animate-spin" />
         </div>
       ) : (
-        trucks.map((truck) => <TruckCard truck={truck} key={truck.id} />)
+        trucks.map((truck) => <TruckCard truck={truck} key={truck.name} />)
       )}
       {!loading && trucks.length > 0 && (
         <div className="flex justify-center" onClick={handleClick}>
