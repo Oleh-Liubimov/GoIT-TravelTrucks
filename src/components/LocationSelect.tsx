@@ -22,7 +22,7 @@ export default function LocationSelect({
     <div className="mb-10">
       <span className="text-base text-gray-600">Location</span>
       <Select onValueChange={handleSelectChange}>
-        <SelectTrigger className="w-full ml-1">
+        <SelectTrigger className="w-[95%] ml-1">
           <SelectValue placeholder="Select a location" />
         </SelectTrigger>
         <SelectContent>
