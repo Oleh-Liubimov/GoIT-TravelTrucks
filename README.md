@@ -1,50 +1,17 @@
-# React + TypeScript + Vite
+# Travel Trucks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Цей веб-додаток дозволяє користувачам орендувати траки для кемпінга (домів на колесах). Додаток має зручний інтерфейс, який дозволяє переглядати список доступних траків, додавати їх у обрані, а також переглядати детальну інформацію про кожен трак.
 
-Currently, two official plugins are available:
+## Функції
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Перегляд списку траків**: Користувачі можуть переглядати всі доступні траки для оренди.
+- **Додавання в обрані**: Можливість додавати траки в обрані для швидкого доступу.
+- **Детальна сторінка трака**: Користувачі можуть переглядати подробиці про трак, включаючи характеристики та відгуки інших користувачів.
+- **Форма для замовлення**: Користувачі можуть заповнити форму для оренди трака.
 
-## Expanding the ESLint configuration
+## Технології
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **React**: Використано для побудови інтерфейсу користувача.
+- **Redux**: Для управління станом додатка.
+- **Tailwind CSS**: Для стилізації компонентів.
+- **Axios**: Для роботи з HTTP-запитами.
