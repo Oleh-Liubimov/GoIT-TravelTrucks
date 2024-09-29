@@ -7,7 +7,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
 
 export interface LocationSelectProps {
   onLocationChange: (value: string) => void;
@@ -16,18 +15,14 @@ export interface LocationSelectProps {
 export default function LocationSelect({
   onLocationChange,
 }: LocationSelectProps) {
-  const [location, setLocation] = useState("");
-  console.log(location);
-
   const handleSelectChange = (value: string) => {
-    setLocation(value);
     onLocationChange(value);
   };
   return (
     <div className="mb-10">
       <span className="text-base text-gray-600">Location</span>
       <Select onValueChange={handleSelectChange}>
-        <SelectTrigger className="w-[250px] ml-1">
+        <SelectTrigger className="w-full ml-1">
           <SelectValue placeholder="Select a location" />
         </SelectTrigger>
         <SelectContent>

@@ -1,9 +1,11 @@
 import { Camper } from "@/types";
-
 import FeaturesList from "./FeaturesList";
 import { Button } from "./ui/button";
-import star from "../assets/icons/heart.svg";
 import { useNavigate } from "react-router-dom";
+import { Heart, Map, Star } from "lucide-react";
+import { addFavorite, removeFavorite } from "@/redux/favorites/slice";
+import { selectFavorite } from "@/redux/favorites/selectors";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 
 export interface TruckCardProps {
   truck: Camper;
@@ -11,17 +13,29 @@ export interface TruckCardProps {
 
 export default function TruckCard({ truck }: TruckCardProps) {
   const navigate = useNavigate();
-  // const dispatch = useAppDispatch();
-  // const favorite = useAppSelector(selectFavorite);
-  // const [favorite, setFavorite] = useState(false);
+  const dispatch = useAppDispatch();
+  const favorites = useAppSelector(selectFavorite);
 
   const handleClick = (id: string) => {
     navigate(`/campers/${id}`);
   };
 
-  // const handleAddFavorite = (truck: Camper) => {
-  //   dispatch(addFavorite(truck));
-  // };
+  const handleAddFavorite = (truck: Camper) => {
+    dispatch(addFavorite(truck));
+  };
+
+  const handleRemoveFavorite = (id: string) => {
+    dispatch(removeFavorite(id));
+  };
+
+  const handleFavoriteClick = (truck: Camper) => {
+    const isFavorite = favorites.some((f) => f.id === truck.id);
+    if (isFavorite) {
+      handleRemoveFavorite(truck.id);
+    } else {
+      handleAddFavorite(truck);
+    }
+  };
 
   return (
     <div className="border p-6 flex gap-6 rounded-3xl">
@@ -36,23 +50,27 @@ export default function TruckCard({ truck }: TruckCardProps) {
         <div className="flex justify-between">
           <h2 className="font-bold text-2xl truncate">{truck.name}</h2>
           <div className=" flex justify-center items-center gap-3">
-            <span className="font-bold">${truck.price}</span>
-            <button type="button">
-              <img src={star} alt="" />
+            <span className="font-bold">${truck.price}.00</span>
+            <button onClick={() => handleFavoriteClick(truck)}>
+              {favorites.some((fav) => fav.id === truck.id) ? (
+                <Heart fill="red" />
+              ) : (
+                <Heart />
+              )}
             </button>
           </div>
         </div>
         <div className=" flex gap-4">
-          <span>
-            <img src="./assets/icons/star.svg" alt="" />
+          <div className="flex hover:underline cursor-pointer">
+            <Star className="size-5" fill="yellow" stroke="currentCollor" />
             <span className="text-black text-base font-semibold">
-              {truck.rating}({truck.reviews.length} Reviews)
+              {truck.rating} ({truck.reviews.length} Reviews)
             </span>
-          </span>
-          <span className=" text-black font-semibold">
-            <img src="./assets/icons/map.svg" alt="" />
+          </div>
+          <div className=" text-black font-semibold flex items-center">
+            <Map />
             {truck.location}
-          </span>
+          </div>
         </div>
 
         <span className="text-left text-gray-800 text-base truncate">

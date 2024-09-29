@@ -4,7 +4,7 @@ import bathroom from "../assets/icons/bi_droplet.svg";
 import transmission from "../assets/icons/diagram.svg";
 import kitchen from "../assets/icons/cup-hot.svg";
 import TV from "../assets/icons/Vector.svg";
-import { useState } from "react";
+
 import { Separator } from "./ui/separator";
 import FeatureCard from "./FeatureCard";
 
@@ -15,11 +15,7 @@ export interface EquipmentSelectProps {
 export default function EquipmentSelect({
   onEquipmentChange,
 }: EquipmentSelectProps) {
-  const [selectedEquipment, setSelectedEquipment] = useState<string[]>([]);
-
   const handleToggleChange = (values: string[]) => {
-    setSelectedEquipment(values);
-
     onEquipmentChange(values);
   };
 
@@ -28,7 +24,6 @@ export default function EquipmentSelect({
       <span className="font-semibold inline-block mb-4">Vehicle equipment</span>
       <Separator className="mb-4" />
       <ToggleGroup
-        value={selectedEquipment}
         onValueChange={handleToggleChange}
         type="multiple"
         variant="outline"

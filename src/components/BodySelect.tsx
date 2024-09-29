@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import EquipmentCard from "./FeatureCard";
 import { Separator } from "./ui/separator";
@@ -11,11 +10,7 @@ export interface BodySelectProps {
 }
 
 export default function BodySelect({ onBodySelect }: BodySelectProps) {
-  const [selectedBody, setSelectedBody] = useState<string>("");
-  console.log(selectedBody);
-
   const handleBodySelect = (value: string) => {
-    setSelectedBody(value);
     onBodySelect(value);
   };
 
